@@ -1,0 +1,6 @@
+@CambioAPI_HostAddress = http://localhost:5259
+
+GET {{CambioAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
