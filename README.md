@@ -10,19 +10,29 @@
 
 1. Configure a string de conexão no arquivo `appsettings.json` com os dados básicos de login do PostgreSQL.
 
-2. No terminal (CMD), dentro da pasta do projeto `CambioAPI`, execute o comando:
-
-    ```bash
-    dotnet ef database update -p CambioAPI
+2. Configure o `applicationUrl` no arquivo `Properties/launchsettings.json` com a porta desejada. Exemplo:
+    Na linha do HTTPS e do HTTP da parte profiles (deixar http mesmo para o https, visto da falta do certificado):
+    ```json
+    "applicationUrl": "http://localhost:7207;http://localhost:5259"
     ```
 
-3. Execute o projeto dentro da pasta `CambioAPI` com:
+    > **Observação**: Se alterar aqui, também será necessário mudar a URL no `api.ts` do frontend.
+
+3. No terminal (CMD), dentro da pasta do projeto `CambioAPI`, execute os comandos:
 
     ```bash
-    dotnet run
+    dotnet tool install --global dotnet-ef --version 8.0
+    dotnet ef database update -p (caminho completo pro CambioAPI.csproj)
+    ```
+
+4. Depois, execute o projeto com:
+
+    ```bash
+    dotnet run --launch-profile https
     ```
 
 ---
+
 
 ## Para configurar o Frontend
 
@@ -51,4 +61,5 @@
 
 ---
 
-Com isso, a API e o frontend estarão rodando localmente.
+Com isso, a API e o frontend estarão rodando localmente!
+Para prosseguir, crie um usuário, para o acesso do primeiro usuário master, é necessário transformar o usuário em master diretamente no postgreSQL. (propriedade IsMaster na tabela Users).
